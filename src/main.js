@@ -8,7 +8,8 @@ import './plugins/vant.js'
 import "./plugins/components"
 
 // style
- import "@/assets/less/common.less"
+import "@/assets/css/reset.css"
+import "@/assets/less/common.less"
 
 Vue.config.productionTip = false
 

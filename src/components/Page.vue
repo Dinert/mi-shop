@@ -1,22 +1,33 @@
 <style lang="less" scoped>
-  .page{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    &-content{
-      flex: 1;
-      overflow: uto;
-    }
-    &-footer{
-      background-color: red;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      top: 100%;
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  &-header {
+    &-nav {
+    background-color: #ff6700;
+      &-logo {
+        width: 15%;
+        background: url("../assets/img/svg/mi.svg") no-repeat;
+        background-size: 30px;
+        height: 40px;
+      }
     }
   }
 
+  &-content {
+    flex: 1;
+    overflow: auto;
+  }
+  &-footer {
+    background-color: red;
+    height: 50px;
+    &-bar {
+      position: static;
+      height: 100%;
+    }
+  }
+}
 </style>
 
 <template>
@@ -29,13 +40,18 @@
         :left-arrow="leftArrow"
         @click-left="onClickLeft"
         @click-right="onClickRight"
-      ></van-nav-bar>
+        class="page-header-nav"
+      >
+        <template #left>
+          <div class="page-header-nav-logo"></div>
+        </template>
+      </van-nav-bar>
     </header>
     <section class="page-content">
       <slot></slot>
     </section>
     <footer class="page-footer" v-if="showFooter">
-      <van-tabbar route>
+      <van-tabbar route class="page-footer-bar">
         <van-tabbar-item replace icon="home-o" to="/">首页</van-tabbar-item>
         <van-tabbar-item replace icon="apps-o" to="/classify">分类</van-tabbar-item>
         <van-tabbar-item replace icon="cart-o" to="/shopcar">购物车</van-tabbar-item>
@@ -74,8 +90,8 @@ export default {
     },
     showFooter: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   methods: {
     onClickRight() {
